@@ -1,0 +1,28 @@
+#cloud-config
+
+ssh_authorized_keys:
+${authorized_keys}
+
+rancher:
+  docker:
+    engine: ${docker_version}
+  services:
+    rancher-server:
+      image: rancher/server:${rancher_version}
+      restart: unless-stopped
+      command:
+        - --db-host
+        - ${rds_host}
+        - --db-user
+        - ${rds_user}
+        - --db-pass
+        - ${rds_password}
+        - --db-name
+        - ${rds_dbname}
+        - --advertise-address
+        - ${rancher_address}
+      ports:
+        - 8080:8080
+        - 9345:9345
+
+

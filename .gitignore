@@ -1,6 +1,14 @@
 # Compiled files
 *.tfstate
 *.tfstate.backup
+*.tfplan
+.terraform.tfstate.*
 
 # Module directory
 .terraform/
+
+# webstorm
+.idea/*
+
+#authorized keys
+authorized_keys/authorized_keys
